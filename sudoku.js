@@ -1,10 +1,10 @@
 window.onload = function() {
   var sudokuDiv = document.getElementById('sudoku')
-  var sudokuTable = createTable()
-  sudokuDiv.replaceChild(sudokuTable, sudokuDiv.firstChild)
+  var sudokuGrid = createGrid()
+  sudokuDiv.replaceChild(sudokuGrid, sudokuDiv.firstChild)
 }
 
-createTable = function() {
+createGrid = function() {
   var table = document.createElement('table')
   for (var x = 0; x < 9; x++) {
     var tr = document.createElement('tr')
