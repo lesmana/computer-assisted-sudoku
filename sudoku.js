@@ -6,11 +6,26 @@ window.onload = function() {
 
 createGrid = function() {
   var table = document.createElement('table')
-  for (var x = 0; x < 9; x++) {
+  for (var x = 0; x < 3; x++) {
     var tr = document.createElement('tr')
-    for (var y = 0; y < 9; y++) {
+    for (var y = 0; y < 3; y++) {
       var td = document.createElement('td')
-      var cell = createCell(x, y)
+      var box = createBox(x, y)
+      td.appendChild(box)
+      tr.appendChild(td)
+    }
+    table.appendChild(tr)
+  }
+  return table
+}
+
+createBox = function(bx, by) {
+  var table = document.createElement('table')
+  for (var x = 0; x < 3; x++) {
+    var tr = document.createElement('tr')
+    for (var y = 0; y < 3; y++) {
+      var td = document.createElement('td')
+      var cell = createCell((bx * 3) + x, (by * 3) + y)
       td.appendChild(cell)
       tr.appendChild(td)
     }
