@@ -34,9 +34,9 @@ createBox = function(bx, by) {
   return table
 }
 
-createCell = function(x, y) {
+createCell = function(cx, cy) {
   var cell = document.createElement('div')
-  cell.setAttribute('id', 'cell' + x + '' + y)
+  cell.setAttribute('id', 'cell' + cx + '' + cy)
   cell.classList.add('cell')
   var table = document.createElement('table')
   cell.appendChild(table)
