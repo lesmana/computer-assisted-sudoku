@@ -46,6 +46,7 @@ createCell = function(cx, cy) {
     for (var y = 0; y < 3; y++) {
       var td = document.createElement('td')
       var candidate = document.createElement('div')
+      candidate.setAttribute('id', 'candidate' + (cx + 1) + '' + (cy + 1) + '' + counter)
       candidate.textContent = counter
       counter++
       td.appendChild(candidate)
