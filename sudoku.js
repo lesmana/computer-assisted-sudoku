@@ -1,16 +1,16 @@
 window.onload = function() {
   var sudokuDiv = document.getElementById('sudoku')
-  var sudokuGrid = createGrid()
+  var sudokuGrid = createHtmlGrid()
   sudokuDiv.replaceChild(sudokuGrid, sudokuDiv.firstChild)
 }
 
-createGrid = function() {
+createHtmlGrid = function() {
   var table = document.createElement('table')
   for (var x = 0; x < 3; x++) {
     var tr = document.createElement('tr')
     for (var y = 0; y < 3; y++) {
       var td = document.createElement('td')
-      var box = createBox(x, y)
+      var box = createHtmlBox(x, y)
       td.appendChild(box)
       tr.appendChild(td)
     }
@@ -19,13 +19,13 @@ createGrid = function() {
   return table
 }
 
-createBox = function(bx, by) {
+createHtmlBox = function(bx, by) {
   var table = document.createElement('table')
   for (var x = 0; x < 3; x++) {
     var tr = document.createElement('tr')
     for (var y = 0; y < 3; y++) {
       var td = document.createElement('td')
-      var cell = createCell((bx * 3) + x, (by * 3) + y)
+      var cell = createHtmlCell((bx * 3) + x, (by * 3) + y)
       td.appendChild(cell)
       tr.appendChild(td)
     }
@@ -34,7 +34,7 @@ createBox = function(bx, by) {
   return table
 }
 
-createCell = function(cx, cy) {
+createHtmlCell = function(cx, cy) {
   var cell = document.createElement('div')
   cell.setAttribute('id', 'cell' + (cx + 1) + '' + (cy + 1))
   cell.classList.add('cell')
