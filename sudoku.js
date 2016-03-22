@@ -45,10 +45,10 @@ createCell = function(x, y) {
     var tr = document.createElement('tr')
     for (var y = 0; y < 3; y++) {
       var td = document.createElement('td')
-      var miniCell = document.createElement('div')
-      miniCell.textContent = counter
+      var candidate = document.createElement('div')
+      candidate.textContent = counter
       counter++
-      td.appendChild(miniCell)
+      td.appendChild(candidate)
       tr.appendChild(td)
     }
     table.appendChild(tr)
