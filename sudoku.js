@@ -194,6 +194,8 @@ getRandomIndexes = function() {
   return indexes
 }
 
+// hopefully correctly implemented fisher-yates shuffle
+// https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 shuffle = function(array) {
   let counter = array.length;
   while (counter > 0) {
