@@ -4,6 +4,13 @@ Computer Assisted Sudoku
 a sudoku game where you can have fun solving the interesting parts
 of sudoku while the computer assists you doing the boring parts
 
+Work in Progress
+----------------
+
+* make it work (we are here)
+* make it right
+* make it fast
+
 License
 -------
 
