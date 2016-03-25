@@ -173,7 +173,7 @@ setRandomCandidate = function(cell) {
       candidates.push(maybeCandidate)
     }
   }
-  var index = Math.floor(Math.random() * candidates.length)
+  var index = Math.floor(random() * candidates.length)
   var candidate = candidates[index]
   for (var i = 0; i < 9; i++) {
     cell.candidates[i] = 0
@@ -184,6 +184,26 @@ setRandomCandidate = function(cell) {
     neighbour.candidates[candidate - 1] = 0
   }
 }
+
+// hopefully correctly implemented Multiply-with-carry pseudo random generator
+// https://en.wikipedia.org/wiki/Multiply-with-carry
+randomSeed = function(s) {
+    var m_w  = s;
+    var m_z  = 987654321;
+    var mask = 0xffffffff;
+
+    return function() {
+      m_z = (36969 * (m_z & 65535) + (m_z >> 16)) & mask;
+      m_w = (18000 * (m_w & 65535) + (m_w >> 16)) & mask;
+
+      var result = ((m_z << 16) + m_w) & mask;
+      result /= 4294967296;
+
+      return result + 0.5;
+    }
+}
+
+random = randomSeed(2);
 
 getRandomIndexes = function() {
   var indexes = []
@@ -199,7 +219,7 @@ getRandomIndexes = function() {
 shuffle = function(array) {
   let counter = array.length;
   while (counter > 0) {
-    let index = Math.floor(Math.random() * counter);
+    let index = Math.floor(random() * counter);
     counter--;
     let temp = array[counter];
     array[counter] = array[index];
