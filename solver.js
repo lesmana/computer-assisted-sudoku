@@ -4,11 +4,16 @@ fillSudoku = function(sudoku) {
   for (var i = 0; i < 81; i++) {
     var ri = randomIndexes[i]
     var candidates = sudoku.getCandidates(ri)
-    var index = Math.floor(random() * candidates.length)
-    var candidate = candidates[index]
+    var candidate = getRandomCandidate(candidates)
     sudoku.setCandidate(ri, candidate)
     updateHtml(sudoku)
   }
+}
+
+getRandomCandidate = function(candidates) {
+  var index = Math.floor(random() * candidates.length)
+  var candidate = candidates[index]
+  return candidate
 }
 
 getRandomIndexes = function() {
