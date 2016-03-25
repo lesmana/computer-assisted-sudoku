@@ -5,6 +5,30 @@ Sudoku = function() {
   this.cells = createCells(this.boxes, this.rows, this.columns)
 }
 
+Sudoku.prototype.getCandidates = function(ci) {
+  var cell = this.cells[ci]
+  var candidates = []
+  for (var i = 0; i < 9; i++) {
+    var maybeCandidate = cell.candidates[i]
+    if (maybeCandidate != 0) {
+      candidates.push(maybeCandidate)
+    }
+  }
+  return candidates
+}
+
+Sudoku.prototype.setCandidate = function(ci, candidate) {
+  var cell = this.cells[ci]
+  for (var i = 0; i < 9; i++) {
+    cell.candidates[i] = 0
+  }
+  cell.candidates[candidate - 1] = candidate
+  for (var i = 0; i < 20; i++) {
+    var neighbour = cell.neighbours[i]
+    neighbour.candidates[candidate - 1] = 0
+  }
+}
+
 createBoxes = function() {
   var boxcolumns = []
   for (var x = 0; x < 3; x++) {

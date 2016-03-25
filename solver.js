@@ -3,30 +3,16 @@ fillSudoku = function(sudoku) {
   var randomIndexes = getRandomIndexes()
   for (var i = 0; i < 81; i++) {
     var ri = randomIndexes[i]
-    var cell = sudoku.cells[ri]
-    setRandomCandidate(cell)
+    setRandomCandidate(sudoku, ri)
     updateHtml(sudoku)
   }
 }
 
-setRandomCandidate = function(cell) {
-  var candidates = []
-  for (var i = 0; i < 9; i++) {
-    var maybeCandidate = cell.candidates[i]
-    if (maybeCandidate != 0) {
-      candidates.push(maybeCandidate)
-    }
-  }
+setRandomCandidate = function(sudoku, ci) {
+  var candidates = sudoku.getCandidates(ci)
   var index = Math.floor(random() * candidates.length)
   var candidate = candidates[index]
-  for (var i = 0; i < 9; i++) {
-    cell.candidates[i] = 0
-  }
-  cell.candidates[candidate - 1] = candidate
-  for (var i = 0; i < 20; i++) {
-    var neighbour = cell.neighbours[i]
-    neighbour.candidates[candidate - 1] = 0
-  }
+  sudoku.setCandidate(ci, candidate)
 }
 
 getRandomIndexes = function() {
