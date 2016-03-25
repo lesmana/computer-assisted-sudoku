@@ -1,65 +1,3 @@
-window.onload = function() {
-  var sudokuDiv = document.getElementById('sudoku')
-  var sudokuGrid = createHtmlGrid()
-  sudokuDiv.replaceChild(sudokuGrid, sudokuDiv.firstChild)
-  sudokuData = createSudoku()
-  fillSudoku(sudokuData)
-  updateHtml(sudokuData)
-}
-
-createHtmlGrid = function() {
-  var table = document.createElement('table')
-  for (var x = 0; x < 3; x++) {
-    var tr = document.createElement('tr')
-    for (var y = 0; y < 3; y++) {
-      var td = document.createElement('td')
-      var box = createHtmlBox(x, y)
-      td.appendChild(box)
-      tr.appendChild(td)
-    }
-    table.appendChild(tr)
-  }
-  return table
-}
-
-createHtmlBox = function(bx, by) {
-  var table = document.createElement('table')
-  for (var x = 0; x < 3; x++) {
-    var tr = document.createElement('tr')
-    for (var y = 0; y < 3; y++) {
-      var td = document.createElement('td')
-      var cell = createHtmlCell((bx * 3) + x, (by * 3) + y)
-      td.appendChild(cell)
-      tr.appendChild(td)
-    }
-    table.appendChild(tr)
-  }
-  return table
-}
-
-createHtmlCell = function(cx, cy) {
-  var cell = document.createElement('div')
-  cell.setAttribute('id', 'cell' + (cx + 1) + '' + (cy + 1))
-  cell.classList.add('cell')
-  var table = document.createElement('table')
-  cell.appendChild(table)
-  var counter = 1
-  for (var x = 0; x < 3; x++) {
-    var tr = document.createElement('tr')
-    for (var y = 0; y < 3; y++) {
-      var td = document.createElement('td')
-      var candidate = document.createElement('div')
-      candidate.setAttribute('id', 'candidate' + (cx + 1) + '' + (cy + 1) + '' + counter)
-      candidate.textContent = counter
-      counter++
-      td.appendChild(candidate)
-      tr.appendChild(td)
-    }
-    table.appendChild(tr)
-  }
-  return cell
-}
-
 createSudoku = function() {
   var boxes = createBoxes()
   var rows = createRows()
@@ -185,26 +123,6 @@ setRandomCandidate = function(cell) {
   }
 }
 
-// hopefully correctly implemented Multiply-with-carry pseudo random generator
-// https://en.wikipedia.org/wiki/Multiply-with-carry
-randomSeed = function(s) {
-    var m_w  = s;
-    var m_z  = 987654321;
-    var mask = 0xffffffff;
-
-    return function() {
-      m_z = (36969 * (m_z & 65535) + (m_z >> 16)) & mask;
-      m_w = (18000 * (m_w & 65535) + (m_w >> 16)) & mask;
-
-      var result = ((m_z << 16) + m_w) & mask;
-      result /= 4294967296;
-
-      return result + 0.5;
-    }
-}
-
-random = randomSeed(2);
-
 getRandomIndexes = function() {
   var indexes = []
   for (var i = 0; i < 81; i++) {
@@ -214,38 +132,3 @@ getRandomIndexes = function() {
   return indexes
 }
 
-// hopefully correctly implemented fisher-yates shuffle
-// https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
-shuffle = function(array) {
-  let counter = array.length;
-  while (counter > 0) {
-    let index = Math.floor(random() * counter);
-    counter--;
-    let temp = array[counter];
-    array[counter] = array[index];
-    array[index] = temp;
-  }
-}
-
-updateHtml = function(sudoku) {
-  var cells = sudoku.cells
-  for (var i = 0; i < 81; i++) {
-    var cell = cells[i]
-    updateHtmlCell(cell)
-  }
-}
-
-updateHtmlCell = function(cell) {
-  var x = cell.x
-  var y = cell.y
-  var candidates = cell.candidates
-  for (var i = 0; i < 9; i++) {
-    var candidate = candidates[i]
-    var htmlCandidate = document.getElementById('candidate' + x + '' + y + '' + (i + 1))
-    if (candidate != 0) {
-      htmlCandidate.classList.remove('isnotcandidate')
-    } else {
-      htmlCandidate.classList.add('isnotcandidate')
-    }
-  }
-}
