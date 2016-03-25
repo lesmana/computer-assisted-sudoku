@@ -1,14 +1,8 @@
-createSudoku = function() {
-  var boxes = createBoxes()
-  var rows = createRows()
-  var columns = createColumns()
-  var cells = createCells(boxes, rows, columns)
-  var sudoku = new Object()
-  sudoku.boxes = boxes
-  sudoku.rows = rows
-  sudoku.columns = columns
-  sudoku.cells = cells
-  return sudoku
+Sudoku = function() {
+  this.boxes = createBoxes()
+  this.rows = createRows()
+  this.columns = createColumns()
+  this.cells = createCells(this.boxes, this.rows, this.columns)
 }
 
 createBoxes = function() {
