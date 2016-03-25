@@ -5,8 +5,8 @@ Sudoku = function() {
   this.cells = createCells(this.boxes, this.rows, this.columns)
 }
 
-Sudoku.prototype.getCandidates = function(ci) {
-  var cell = this.cells[ci]
+Sudoku.prototype.getCandidates = function(cellIndex) {
+  var cell = this.cells[cellIndex]
   var candidates = []
   for (var i = 0; i < 9; i++) {
     var maybeCandidate = cell.candidates[i]
@@ -17,8 +17,8 @@ Sudoku.prototype.getCandidates = function(ci) {
   return candidates
 }
 
-Sudoku.prototype.setCandidate = function(ci, candidate) {
-  var cell = this.cells[ci]
+Sudoku.prototype.setCandidate = function(cellIndex, candidate) {
+  var cell = this.cells[cellIndex]
   for (var i = 0; i < 9; i++) {
     cell.candidates[i] = 0
   }
