@@ -64,7 +64,7 @@ createCells = function(boxes, rows, columns) {
   var cells = []
   for (var x = 0; x < 9; x++) {
     for (var y = 0; y < 9; y++) {
-      var cell = createCell(x + 1, y + 1)
+      var cell = new Cell(x + 1, y + 1)
       var bx = Math.floor(x / 3) + 1
       var by = Math.floor(y / 3) + 1
       boxes[bx][by].push(cell)
@@ -102,11 +102,9 @@ setNeighbours = function(cells) {
   }
 }
 
-createCell = function(cx, cy) {
-  var cell = new Object()
-  cell.x = cx
-  cell.y = cy
-  cell.candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  return cell
+Cell = function(cx, cy) {
+  this.x = cx
+  this.y = cy
+  this.candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
