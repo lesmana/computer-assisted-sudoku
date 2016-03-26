@@ -102,9 +102,9 @@ setNeighbours = function(cells) {
   }
 }
 
-Cell = function(cx, cy) {
-  this.x = cx
-  this.y = cy
+Cell = function(x, y) {
+  this.x = x
+  this.y = y
   this.candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
