@@ -7,13 +7,7 @@ Sudoku = function() {
 
 Sudoku.prototype.getCandidates = function(cellIndex) {
   var cell = this.cells[cellIndex]
-  var candidates = []
-  for (var i = 0; i < 9; i++) {
-    var maybeCandidate = cell.candidates[i]
-    if (maybeCandidate != 0) {
-      candidates.push(maybeCandidate)
-    }
-  }
+  var candidates = cell.getCandidates()
   return candidates
 }
 
@@ -106,5 +100,16 @@ Cell = function(x, y) {
   this.x = x
   this.y = y
   this.candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+Cell.prototype.getCandidates = function() {
+  var candidates = []
+  for (var i = 0; i < 9; i++) {
+    var maybeCandidate = this.candidates[i]
+    if (maybeCandidate != 0) {
+      candidates.push(maybeCandidate)
+    }
+  }
+  return candidates
 }
 
