@@ -3,9 +3,10 @@ fillSudoku = function(sudoku) {
   var randomIndexes = getRandomIndexes()
   for (var i = 0; i < 81; i++) {
     var ri = randomIndexes[i]
-    var candidates = sudoku.getCandidates(ri)
+    var cell = sudoku.getCellByIndex(ri)
+    var candidates = sudoku.getCandidates(cell)
     var candidate = getRandomCandidate(candidates)
-    sudoku.setCandidate(ri, candidate)
+    sudoku.setCandidate(cell, candidate)
     updateHtml(sudoku)
   }
 }
@@ -28,9 +29,9 @@ getRandomIndexes = function() {
 rootSolution = function(sudoku) {
   for (var i = 0; i < 9; i++) {
     for (var j = 0; j < 9; j++) {
-      var cellIndex = (i * 9) + j
+      var cell = sudoku.getCellByCoord(i, j)
       var cellValue = (((i * 3) + Math.floor(i / 3) + j) % 9) + 1
-      sudoku.setCandidate(cellIndex, cellValue)
+      sudoku.setCandidate(cell, cellValue)
       updateHtml(sudoku)
     }
   }

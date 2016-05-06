@@ -5,14 +5,23 @@ Sudoku = function() {
   this.cells = createCells(this.boxes, this.rows, this.columns)
 }
 
-Sudoku.prototype.getCandidates = function(cellIndex) {
+Sudoku.prototype.getCellByIndex = function(cellIndex) {
   var cell = this.cells[cellIndex]
+  return cell
+}
+
+Sudoku.prototype.getCellByCoord = function(cellX, cellY) {
+  var cellIndex = (cellX * 9) + cellY
+  var cell = this.cells[cellIndex]
+  return cell
+}
+
+Sudoku.prototype.getCandidates = function(cell) {
   var candidates = cell.getCandidates()
   return candidates
 }
 
-Sudoku.prototype.setCandidate = function(cellIndex, candidate) {
-  var cell = this.cells[cellIndex]
+Sudoku.prototype.setCandidate = function(cell, candidate) {
   for (var i = 0; i < 9; i++) {
     cell.candidates[i] = 0
   }
