@@ -10,3 +10,8 @@ fillSudokuOnClick = function() {
   fillSudoku(sudokuData)
   updateHtml(sudokuData)
 }
+
+rootSolutionOnClick = function() {
+  rootSolution(sudokuData)
+  updateHtml(sudokuData)
+}

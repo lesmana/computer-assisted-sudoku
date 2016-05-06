@@ -25,3 +25,13 @@ getRandomIndexes = function() {
   return indexes
 }
 
+rootSolution = function(sudoku) {
+  for (var i = 0; i < 9; i++) {
+    for (var j = 0; j < 9; j++) {
+      var cellIndex = (i * 9) + j
+      var cellValue = (((i * 3) + Math.floor(i / 3) + j) % 9) + 1
+      sudoku.setCandidate(cellIndex, cellValue)
+      updateHtml(sudoku)
+    }
+  }
+}
