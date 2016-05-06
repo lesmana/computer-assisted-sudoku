@@ -3,7 +3,10 @@ bodyOnload = function() {
   var sudokuGrid = createHtmlGrid()
   sudokuDiv.replaceChild(sudokuGrid, sudokuDiv.firstChild)
   sudokuData = new Sudoku()
-  fillSudoku(sudokuData)
   updateHtml(sudokuData)
 }
 
+fillSudokuOnClick = function() {
+  fillSudoku(sudokuData)
+  updateHtml(sudokuData)
+}
